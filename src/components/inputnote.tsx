@@ -1,15 +1,21 @@
-import { forwardRef } from "react"
+import Labelinput from "./labelInput"
 
-//  function Inputnote(props:{identity:string,type:string,style:string}){
-//     return (
-//         <input type={props.type} ref={} id={props.identity} name={props.identity} className={props.style} />   
-//     )
-// }
+import { ChangeEvent} from "react"
 
-const Inputnote = forwardRef((props:{identity:string,type:string,style:string},ref) => {
-    return(
-        <input type={props.type} ref={ref} id={props.identity} name={props.identity} className={props.style} />   
+ function Inputnote(props:{identity:string,type:string,style:string,textnote:string,usetextnote: (arg0: string) => void}){
+
+    function texthandler(text: ChangeEvent<HTMLInputElement>){
+        const textvalue = text.target.value
+        props.usetextnote(textvalue)
+
+        // console.log(props.textnote)
+    }
+    return (
+        <Labelinput ngclass="text-xl" inputname={props.identity} >
+          <h1>  login </h1>
+            <input onChange={e => texthandler(e)} type={props.type} id={props.identity} name={props.identity} className={props.style} />   
+        </Labelinput>
     )
-})
+}
 
 export default Inputnote
