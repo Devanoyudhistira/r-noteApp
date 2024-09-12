@@ -49,7 +49,7 @@ export default function App() {
           tambah
         </button>
       </NoteForm>
-      <List data={data} />
+      <List deletefunction={deleteitems} data={data} />
     </>
   );
 }
