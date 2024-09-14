@@ -5,7 +5,12 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      'fontFamily': {
+        'robot' : 'roboto',
+        'bebas' : 'Bebas Neue',
+        'poppins' : 'poppins',
+      },
   },
   plugins: [],
-}
+}}

@@ -1,7 +1,9 @@
-import { MouseEvent, useEffect,useState } from "react";
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { useEffect, useState } from "react";
 import NoteForm from "./components/form";
-import Inputnote from "./components/inputnote";
-import List from "./components/list";
+import Navbar from "./components/navbar";
+import Notewrap from "./components/notewrap";
+import Note from "./components/note";
 
 export default function App() {
   const [note, setnote] = useState("");
@@ -12,44 +14,27 @@ export default function App() {
     for (let i = 0; i < localStorage.length; i++) {
       const key = localStorage.key(i);
       const storageitem = localStorage.getItem(key!);
-      items.push(storageitem);
+      const datas = {item:storageitem,key:key}
+      items.push(datas);
     }
-    setdata([...data,...items])
+    setdata([...data,...items]);
   }, []);
 
-  function editlocalstorage(
-    value: string,
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>  ) {
-    e.preventDefault();
-    localStorage.setItem(value, value);
-    setdata([...data, value]);
-  }
 
-  function deleteitems(id: string){
-    const updateitem = data.filter(item => item !== id)
-    localStorage.removeItem(id)
-    setdata(updateitem)
-  }
 
   return (
     <>
+      <Navbar />
       <NoteForm
-        submitevent={(e: MouseEvent<HTMLButtonElement, MouseEvent>) =>
-          editlocalstorage(note, e)
-        }
-      >
-        <Inputnote
-          style="border border-black outline-none text-xl text-blue-400"
-          type="text"
-          identity="addnote"
-          textnote={note}
-          usetextnote={setnote}
-        />
-        <button type="submit" className="bg-blue-400 px-3 py-1">
-          tambah
-        </button>
-      </NoteForm>
-      <List deletefunction={deleteitems} data={data} />
+        setdata={setdata}
+        data={data}
+        note={note}
+        setnote={setnote}
+        text={note}
+      ></NoteForm>
+      <Notewrap>
+        <Note setdata={setdata} data={data} />
+      </Notewrap>
     </>
   );
 }
