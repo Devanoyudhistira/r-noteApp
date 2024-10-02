@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useEffect, useState } from "react";
 import NoteForm from "./components/form";
@@ -17,7 +18,7 @@ export default function App() {
       let datas = {item:storageitem,key:key}
       let parseitem;
       try{
-        parseitem = JSON.parse(storageitem)
+        parseitem = JSON.parse(storageitem!)
       }
       catch{
         parseitem = storageitem
