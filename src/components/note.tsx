@@ -9,7 +9,8 @@ export default function Note(props:{data: (string | number | boolean | ReactElem
   }
     return(
       props.data.reverse().map((e: string | number | boolean | ReactElement<never, string | JSXElementConstructor<unknown>> | Iterable<ReactNode> | ReactPortal | null | undefined) =>{
-        return <Singlenote keyid={e.key} value={e.item}> <button onClick={() => deleteitems(e.key)} className="bg-red-600 text-xl font-robot px-3 py-1" >delete</button> </Singlenote>
+        return <Singlenote keyid={e.key} value={e.item} judul={e.judul}>
+           <button onClick={() => deleteitems(e.key)} className="bg-red-600 text-xl font-robot px-3 py-1" >delete</button> </Singlenote>
       })
     )
 }

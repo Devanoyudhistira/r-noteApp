@@ -14,12 +14,21 @@ export default function App() {
     for (let i = 0; i < localStorage.length; i++) {
       const key = localStorage.key(i);
       const storageitem = localStorage.getItem(key!);
-      const datas = {item:storageitem,key:key}
+      let datas = {item:storageitem,key:key}
+      let parseitem;
+      try{
+        parseitem = JSON.parse(storageitem)
+      }
+      catch{
+        parseitem = storageitem
+      }
+      datas = parseitem
+      console.log(datas)
       items.push(datas);
     }
-    setdata([...data,...items.reverse()]);
+    setdata([...data,...items]);
   }, []);
-
+  
 
 
   return (
