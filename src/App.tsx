@@ -17,7 +17,7 @@ export default function App() {
       const datas = {item:storageitem,key:key}
       items.push(datas);
     }
-    setdata([...data,...items]);
+    setdata([...data,...items.reverse()]);
   }, []);
 
 
@@ -30,7 +30,6 @@ export default function App() {
         data={data}
         note={note}
         setnote={setnote}
-        text={note}
       ></NoteForm>
       <Notewrap>
         <Note setdata={setdata} data={data} />

@@ -1,19 +1,24 @@
 import Inputnote from "./inputnote";
 import Button from "./button";
-import { MouseEvent } from "react";
+import { MouseEvent, useRef } from "react";
 
 
-export default function NoteForm(props:{note: unknown,setnote: unknown,setdata:(arg0: string[]) => void,data: Array<string>,text:string}) {
+export default function NoteForm(props:{note: string,setnote: (arg0: string) => void,setdata: (arg0: (string | { item: string; key: string; })[]) => void,data: Array<string>}) {
+  function setstorageitem(storekey:string,storevalue){
+    localStorage.setItem(new Date().getTime().toString(), storevalue);
+    props.setdata([...props.data, {item:storevalue,key:storekey}]);
+  }
+  const inputref = useRef()
   function editlocalstorage(
     value: string,e: React.MouseEvent<HTMLButtonElement, MouseEvent>  ) {
     e.preventDefault();
-    const d = new Date
-    console.log(props.data)
-    localStorage.setItem(d.getMilliseconds().toString(), value);
-    props.setdata([...props.data, {item:value,key:d.getMilliseconds().toString()}]);
+    setstorageitem(new Date().getTime().toString(),value)
+    props.setnote("")
+    inputref.current.value = ""
   }
-  return <form action="" onSubmit={(e) => editlocalstorage(props.text,e)} method="post">
+  return <form action="" onSubmit={(e) => editlocalstorage(props.note,e)} method="post">
      <Inputnote
+          inputref={inputref}
           style="border border-black outline-none text-xl text-blue-400"
           type="text"
           identity="addnote"
