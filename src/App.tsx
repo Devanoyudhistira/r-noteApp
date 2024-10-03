@@ -8,6 +8,8 @@ import Note from "./components/note";
 
 export default function App() {
   const [note, setnote] = useState("");
+  const [judul, setjudul] = useState("");
+  const [type, settype] = useState("");
   const [data, setdata] = useState([]);
 
   useEffect(() => {
@@ -24,7 +26,6 @@ export default function App() {
         parseitem = storageitem
       }
       datas = parseitem
-      console.log(datas)
       items.push(datas);
     }
     setdata([...data,...items]);
@@ -40,6 +41,10 @@ export default function App() {
         data={data}
         note={note}
         setnote={setnote}
+        judul={judul}
+        setjudul={setjudul}
+        type={type}
+        settype={settype}
       ></NoteForm>
       <Notewrap>
         <Note setdata={setdata} data={data} />
