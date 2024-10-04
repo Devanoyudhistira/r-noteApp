@@ -7,7 +7,7 @@ import Notewrap from "./components/notewrap";
 import Note from "./components/note";
 
 export default function App() {
-  const [note, setnote] = useState("");
+  const [note,setnote] = useState("")
   const [judul, setjudul] = useState("");
   const [type, settype] = useState("");
   const [data, setdata] = useState([]);
